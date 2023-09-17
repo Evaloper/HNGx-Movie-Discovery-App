@@ -14,12 +14,28 @@
   margin-top: 50px;
   padding: 0 90px;
   width: 80%;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 0 30px;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1440px) {
+    width: 100%;
+    padding: 0 50px;
+  }
 }
 
 .title-runtime {
   display: flex;
   justify-content: space-between;
   width: 45%;
+  @media screen and (min-width: 320px) and (max-width: 1024px) {
+    width: 70%;
+  }
+  @media screen and (min-width: 1025px) {
+    width: 55%;
+  }
 }
 
 .title-runtime p {
@@ -29,10 +45,19 @@
 .title-runtime span {
   font-size: 48px;
   line-height: 24px;
+
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    font-size: 36px;
+    line-height: 40px;
+  }
 }
 
 .details p {
   margin-top: 20px;
+
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 .character-span {
   color: red;

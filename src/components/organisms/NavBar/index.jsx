@@ -7,7 +7,7 @@ import logo from './../../../assets/tv.png';
 const apiUrl = 'https://api.themoviedb.org/3';
 const apiKey = import.meta.env.VITE_API_KEY;
 
-export const NavBar = ({ onSearch }) => {
+export const NavBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -25,11 +25,10 @@ export const NavBar = ({ onSearch }) => {
       const data = await response.json();
       setSearchResults(data.results);
       setShowSuggestions(true);
-      onSearch(searchQuery);
     }, 300); // Adjust the debounce delay as needed (e.g., 300ms)
 
     return () => clearTimeout(timer); // Clear the timer on unmount and input changes
-  }, [searchQuery, onSearch]);
+  }, [searchQuery]);
 
   const handleClick = () => {
     window.location.reload();

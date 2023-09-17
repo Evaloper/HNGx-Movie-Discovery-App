@@ -1,0 +1,33 @@
+.trailer iframe {
+  width: 80%;
+  margin: auto;
+}
+.movie-details {
+  margin-top: 30px;
+}
+
+.trailer iframe {
+  height: 50vh;
+  width: 90%;
+}
+.details {
+  margin-top: 50px;
+  padding: 0 90px;
+  width: 80%;
+}
+
+.title-runtime {
+  display: flex;
+}
+
+.title-runtime sub {
+  font-size: 16px;
+}
+.details h1 {
+  font-size: 48px;
+  line-height: 24px;
+}
+
+.details p {
+  margin-top: 20px;
+}

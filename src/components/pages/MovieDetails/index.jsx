@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "./index.scss"
-import { NavBar } from '../../organisms';
+import { Footer, NavBar } from '../../organisms';
 
 const apiUrl = 'https://api.themoviedb.org/3';
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -117,8 +117,8 @@ export const MovieDetails = () => {
                         <p>Director: <span className='character-span'>{movie.directors && movie.directors.map(director => director.name).join(', ')}</span></p>
                         <p>Writer: <span className='character-span'> {movie.writers && movie.writers.map(writer => writer.name).join(', ')}</span></p>
                         <p>Stars: <span className='character-span'>{movie.stars && movie.stars
-                            .sort((a, b) => b.popularity - a.popularity) // Sort stars by popularity in descending order
-                            .slice(0, 5) // Get the top 5 stars
+                            .sort((a, b) => b.popularity - a.popularity)
+                            .slice(0, 5)
                             .map(star => star.name)
                             .join(', ')
                         }</span></p>
@@ -126,6 +126,7 @@ export const MovieDetails = () => {
 
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

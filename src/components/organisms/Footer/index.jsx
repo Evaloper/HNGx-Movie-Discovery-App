@@ -6,8 +6,8 @@ import youtube from './../../../assets/youtube.png'
 
 export const Footer = () => {
     return (
-        <div className='flex flex-col justify-center items-center text-center mt-12 max-[700px]:mx-2.5 max-[500px]:block  max-[500px]:text-justify '>
-            <div className='flex w-1/5 justify-between max-[530px]:w-2/5 max-[500px]:my-5 '>
+        <div className='flex flex-col justify-center items-center text-center mt-12 max-[700px]:mx-2.5 max-[500px]:block  max-[500px]:text-center '>
+            <div className='flex w-1/5 justify-between max-[530px]:w-8/12 max-[500px]:m-auto '>
                 <img src={facebook} alt="facebook" />
                 <img src={instagram} alt="facebook" />
                 <img src={twitter} alt="facebook" />

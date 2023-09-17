@@ -18,16 +18,22 @@
 
 .title-runtime {
   display: flex;
+  justify-content: space-between;
+  width: 45%;
 }
 
-.title-runtime sub {
-  font-size: 16px;
+.title-runtime p {
+  font-size: 20px;
 }
-.details h1 {
+.details h1,
+.title-runtime span {
   font-size: 48px;
   line-height: 24px;
 }
 
 .details p {
   margin-top: 20px;
+}
+.character-span {
+  color: red;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "./index.scss"
+import { NavBar } from '../../organisms';
 
 const apiUrl = 'https://api.themoviedb.org/3';
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -42,35 +43,89 @@ export const MovieDetails = () => {
         fetchMovieDetails();
     }, [id]);
 
+    useEffect(() => {
+        const fetchMovieCredits = async () => {
+            try {
+                // Fetch movie credits
+                const creditsResponse = await fetch(
+                    `${apiUrl}/movie/${id}/credits?api_key=${apiKey}`
+                );
+                const creditsData = await creditsResponse.json();
+
+                // Find the director(s) in the credits
+                const directors = creditsData.crew.filter(
+                    (member) => member.job === 'Director'
+                );
+
+                // Find the writer(s) in the credits
+                const writers = creditsData.crew.filter(
+                    (member) => member.job === 'Writer'
+                );
+
+                // Find the stars (actors) in the credits
+                const stars = creditsData.cast;
+
+                // Set the director(s), writer(s), and stars in the movie data
+                setMovie((prevMovie) => ({
+                    ...prevMovie,
+                    directors,
+                    writers,
+                    stars,
+                }));
+            } catch (error) {
+                console.error('Error fetching movie credits:', error);
+            }
+        };
+
+        fetchMovieCredits();
+    }, [id]);
+
+
     if (!movie) {
         return <div className='text-black'>Loading...</div>;
     }
 
     return (
-        <div className="movie-details text-black w-full">
+        <>
+            <NavBar />
+            <div className="movie-details text-black w-full">
 
-            {trailerKey && (
-                <div className="trailer">
-                    <iframe
-                        title={`${movie.title} Trailer`}
-                        width="560"
-                        height="315"
-                        src={`https://www.youtube.com/embed/${trailerKey}`}
-                        frameBorder="0"
-                        allowFullScreen
-                    ></iframe>
+                {trailerKey && (
+                    <div className="trailer">
+                        <iframe
+                            title={`${movie.title} Trailer`}
+                            width="560"
+                            height="315"
+                            src={`https://www.youtube.com/embed/${trailerKey}`}
+                            frameBorder="0"
+                            allowFullScreen
+                        ></iframe>
+
+                    </div>
+                )}
+
+                <div className='details'>
+                    <div className='title-runtime'>
+                        <h1>{movie.title}</h1>
+                        <span>.</span>
+                        <p className='details-date'>{movie.release_date}</p>
+                        <span>.</span>
+                        <p>{+ movie.runtime}</p>
+                    </div>
+                    <p className='details-overview'>{movie.overview}</p>
+                    <div className="characters">
+                        <p>Director: <span className='character-span'>{movie.directors && movie.directors.map(director => director.name).join(', ')}</span></p>
+                        <p>Writer: <span className='character-span'> {movie.writers && movie.writers.map(writer => writer.name).join(', ')}</span></p>
+                        <p>Stars: <span className='character-span'>{movie.stars && movie.stars
+                            .sort((a, b) => b.popularity - a.popularity) // Sort stars by popularity in descending order
+                            .slice(0, 5) // Get the top 5 stars
+                            .map(star => star.name)
+                            .join(', ')
+                        }</span></p>
+                    </div>
 
                 </div>
-            )}
-
-            <div className='details'>
-                <div className='title-runtime'>
-                    <h1>{movie.title} * </h1>
-                    <sub>{" " + movie.runtime}</sub>
-                </div>
-                <p className='details-date'>{movie.release_date}</p>
-                <p className='details-overview'>{movie.overview}</p>
             </div>
-        </div>
+        </>
     );
 };

@@ -19,7 +19,7 @@ export const Footer = () => {
                 <p className='ml-10 max-[500px]:mx-0 max-[500px]:my-0 max-[500px]:mb-2.5'>Press Room</p>
             </div>
             <div className='text-grey pb-10'>
-                <p>© 2021 MovieBox by Oghenefejiro Eva Gbaje</p>
+                <p>© 2023 MovieBox by Oghenefejiro Eva Gbaje</p>
             </div>
         </div>
     )

@@ -106,13 +106,13 @@ export const MovieDetails = () => {
 
                 <div className='details'>
                     <div className='title-runtime'>
-                        <h1>{movie.title}</h1>
+                        <h1 data-testid="movie-title" >{movie.title}</h1>
                         <span>.</span>
-                        <p className='details-date'>{movie.release_date}</p>
+                        <p className='details-date' data-testid="movie-release-date">{movie.release_date}</p>
                         <span>.</span>
-                        <p>{+ movie.runtime}</p>
+                        <p data-testid="movie-runtime">{+ movie.runtime}</p>
                     </div>
-                    <p className='details-overview'>{movie.overview}</p>
+                    <p className='details-overview' data-testid="movie-overview">{movie.overview}</p>
                     <div className="characters">
                         <p>Director: <span className='character-span'>{movie.directors && movie.directors.map(director => director.name).join(', ')}</span></p>
                         <p>Writer: <span className='character-span'> {movie.writers && movie.writers.map(writer => writer.name).join(', ')}</span></p>
